@@ -3,12 +3,12 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import DataProvider from "./providers/DataProvider";
+import AuthProvider from "./providers/AuthProvider";
 
 ReactDOM.render(
-  <DataProvider>
+  <AuthProvider>
     <App />
-  </DataProvider>,
+  </AuthProvider>,
   document.getElementById("root")
 );
 

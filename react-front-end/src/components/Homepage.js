@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { dataContext } from "../providers/DataProvider";
 
 export default function Homepage() {
-  const { user, runnerRuns } = useContext(dataContext);
+  const { user } = useContext(dataContext);
   return (
-  <div>{user.email}</div>
+  <div>{user && user.email}</div>
   )
 }

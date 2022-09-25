@@ -26,12 +26,16 @@ export default function Profile() {
     <main className="profile-section">
       <section className="profile-header">
         {profilePicture}
-        <h1>Welcome {user.name}</h1>
-        <ul>
-          <li>Age: {user.age}</li>
-          <li>Email: {user.email}</li>
-          <li>Phone: {user.phone}</li>
-        </ul>
+        {user && (
+          <>
+            <h1>Welcome {user.name}</h1>
+            <ul>
+              <li>Age: {user.age}</li>
+              <li>Email: {user.email}</li>
+              <li>Phone: {user.phone}</li>
+            </ul>
+          </>
+        )}
       </section>
 
       <section className="profile-stats">

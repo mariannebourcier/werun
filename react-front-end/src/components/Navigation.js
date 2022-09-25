@@ -27,15 +27,15 @@ export default function Navigation() {
           >
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/runs">Join A Run</Nav.Link>
-            {!user.id && <Nav.Link href="/signin">Sign In</Nav.Link>}
-            {!user.id && <Nav.Link href="/register">Sign Up</Nav.Link>}
-            {user.id && (
+            {!user && <Nav.Link href="/signin">Sign In</Nav.Link>}
+            {!user && <Nav.Link href="/register">Sign Up</Nav.Link>}
+            {user && (
               <Nav.Link href="/signout" onClick={handleSignOut}>
                 Sign Out
               </Nav.Link>
             )}
-            {user.id && <Nav.Link href="/profile">Profile</Nav.Link>}
-            {user.id && (
+            {user && <Nav.Link href="/profile">Profile</Nav.Link>}
+            {user && (
               <Nav.Link href="#" disabled>
                 Signed in as {user.email}
               </Nav.Link>
