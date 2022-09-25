@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -7,11 +7,12 @@ import FloatingLabel from "react-bootstrap/FloatingLabel";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../components/SignInUser.css";
+import { dataContext } from "../providers/DataProvider";
 
-export default function SignIn(props) {
+export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setUser } = props;
+  const { user, setUser, runnerRuns } = useContext(dataContext);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {

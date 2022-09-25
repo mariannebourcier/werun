@@ -7,9 +7,6 @@ import "../components/Run.css";
 
 export default function Run(props) {
   const { run, userFlag } = props;
-  // const [runImage, setRunImage] = useState(
-  //   "https://cdn-icons-png.flaticon.com/512/366/366998.png"
-  // );
 
   return (
     <>
