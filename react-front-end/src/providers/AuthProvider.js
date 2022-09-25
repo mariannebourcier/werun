@@ -5,7 +5,7 @@ export const authContext = createContext();
 
 export default function AuthProvider(props) {
   const [auth, setAuth] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   const [page, setPage] = useState("Home");
 
   const login = (email, password) => {
@@ -25,7 +25,7 @@ export default function AuthProvider(props) {
     axios
       .post("/api/logout")
       .then(() => {
-        setUser(null);
+        setUser({});
         setAuth(false);
       })
       .catch((error) => {

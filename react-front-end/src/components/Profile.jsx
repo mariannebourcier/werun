@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import Run from "./Run";
 import { dataContext } from "../providers/DataProvider";
@@ -42,7 +42,7 @@ export default function Profile() {
 
       <section className="profile-stats">
         <h1>Runs</h1>
-        {showRunnersRuns(runnerRuns)}
+        {auth && showRunnersRuns(runnerRuns)}
       </section>
     </main>
   );

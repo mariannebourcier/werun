@@ -12,10 +12,10 @@ import "./index.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function App() {
-  const { page } = useContext(authContext);
+  const { page, user } = useContext(authContext);
   return (
     <div>
-      <DataProvider>
+      <DataProvider user={user}>
         <Navigation />
         {page === "Home" && <Homepage />}
         {page === "Profile" && <Profile />}
