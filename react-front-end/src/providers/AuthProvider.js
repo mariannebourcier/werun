@@ -6,19 +6,15 @@ export const authContext = createContext();
 export default function AuthProvider(props) {
   const [auth, setAuth] = useState(false);
   const [user, setUser] = useState(null);
+  const [page, setPage] = useState("Home");
 
   const login = (email, password) => {
     axios
       .post("/api/login", { email, password })
       .then((response) => {
         const { user } = response.data;
-        if (!user) {
-          setUser(null);
-        }
-        if (user) {
-          setAuth(true);
-          setUser(user);
-        }
+        setAuth(true);
+        setUser(user);
       })
       .catch((error) => {
         console.log(error.response.status);
@@ -42,6 +38,8 @@ export default function AuthProvider(props) {
     user,
     login,
     logout,
+    page,
+    setPage,
   };
   return (
     <authContext.Provider value={data}>{props.children}</authContext.Provider>

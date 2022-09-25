@@ -2,7 +2,6 @@
 import axios from "axios";
 import React, { useState, useEffect, createContext } from "react";
 
-
 export const dataContext = createContext();
 
 export default function DataProvider(props) {
@@ -19,26 +18,17 @@ export default function DataProvider(props) {
       .then((response) => {
         const { runs } = response[0].data;
         const { runnerRuns } = response[1].data;
-        console.log("All available runs", runs);
-        console.log("User ID 1's runs that have participated in:", runnerRuns);
         setRuns(runs);
         setRunnerRuns(runnerRuns);
-
-
-        // const { user } = response[3].data;
-        // console.log("single user:", user);
-        // setUser(user)
       })
       .catch((error) => {
         console.log(error.response.status);
       });
   }, []);
 
-  
-
   const data = {
     runs,
-    runnerRuns
+    runnerRuns,
   };
   return (
     <dataContext.Provider value={data}>{props.children}</dataContext.Provider>
