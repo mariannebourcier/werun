@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useContext }  from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { dataContext } from "../providers/DataProvider";
 
-export default function Navigation(props) {
-  const { user, setUser } = props;
+export default function Navigation() {
+  const { user, setUser } = useContext(dataContext);
   const navigate = useNavigate();
 
   const signOut = () => {

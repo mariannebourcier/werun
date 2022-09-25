@@ -1,9 +1,10 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useContext} from "react";
 import Run from "./Run";
+import { dataContext } from "../providers/DataProvider";
 
-export default function FindRun(props) {
-  const { runs } = props;
+export default function FindRun() {
+  const { runs } = useContext(dataContext);
 
   const showAvailableRuns = (runs) => {
     const runsArray = Object.values(runs);

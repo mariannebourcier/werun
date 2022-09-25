@@ -4,7 +4,7 @@ import React, { useState, useEffect, createContext } from "react";
 
 export const dataContext = createContext();
 
-export default function DataProvider() {
+export default function DataProvider(props) {
   const [runs, setRuns] = useState({});
   const [runnerRuns, setRunnerRuns] = useState({});
   const [users, setUsers] = useState({});
@@ -44,5 +44,7 @@ export default function DataProvider() {
     user,
     setUser,
   };
-  return <dataContext.Provider data={data}></dataContext.Provider>;
+  return (
+    <dataContext.Provider value={data}>{props.children}</dataContext.Provider>
+  );
 }

@@ -1,13 +1,11 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
+import React, { useContext } from "react";
 
 import Run from "./Run";
+import { dataContext } from "../providers/DataProvider";
 
-import useAppData from "../hooks/useAppData";
-
-export default function Profile(props) {
-  const { runs } = props;
-  const { user } = props;
+export default function Profile() {
+  const { user, runnerRuns } = useContext(dataContext);
 
   const showRunnersRuns = (runs) => {
     const runsArray = Object.values(runs);
@@ -38,7 +36,7 @@ export default function Profile(props) {
 
       <section className="profile-stats">
         <h1>Runs</h1>
-        {showRunnersRuns(runs)}
+        {showRunnersRuns(runnerRuns)}
       </section>
     </main>
   );
