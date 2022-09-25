@@ -1,27 +1,17 @@
-import React, { useContext }  from "react";
+import React, { useContext } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { dataContext } from "../providers/DataProvider";
 
 export default function Navigation() {
-  const { user, setUser } = useContext(dataContext);
+  const { user, signOut } = useContext(dataContext);
   const navigate = useNavigate();
 
-  const signOut = () => {
-    axios
-      .post("/api/logout")
-      .then(() => {
-        setUser(null);
-        navigate("/");
-      })
-      .catch((error) => {
-        navigate("/");
-        console.log(error.response.status);
-      });
+  const handleSignOut = () => {
+    signOut() && navigate("/");
   };
 
   return (
@@ -40,7 +30,7 @@ export default function Navigation() {
             {!user.id && <Nav.Link href="/signin">Sign In</Nav.Link>}
             {!user.id && <Nav.Link href="/register">Sign Up</Nav.Link>}
             {user.id && (
-              <Nav.Link href="/signout" onClick={signOut}>
+              <Nav.Link href="/signout" onClick={handleSignOut}>
                 Sign Out
               </Nav.Link>
             )}

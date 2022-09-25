@@ -59,6 +59,17 @@ export default function DataProvider(props) {
     });
   }
 
+  const signOut = () => {
+    axios
+      .post("/api/logout")
+      .then(() => {
+        setUser(null);
+      })
+      .catch((error) => {
+        console.log(error.response.status);
+      });
+  };
+
   const data = {
     runs,
     runnerRuns,
@@ -69,7 +80,8 @@ export default function DataProvider(props) {
     email,
     setEmail,
     password,
-    setPassword
+    setPassword,
+    signOut
   };
   return (
     <dataContext.Provider value={data}>{props.children}</dataContext.Provider>
