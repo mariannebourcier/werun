@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Homepage from "./components/Homepage";
 import Error from "./components/Error";
 
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import SignIn from "./components/SignIn";
 
 export default function App() {

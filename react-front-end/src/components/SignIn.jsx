@@ -1,38 +1,22 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useContext } from "react";
-import axios from "axios";
+import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../components/SignInUser.css";
 import { dataContext } from "../providers/DataProvider";
+import { useNavigate } from "react-router-dom";
 
 export default function SignIn() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const { user, setUser, runnerRuns } = useContext(dataContext);
+  const { email, password, setEmail, setPassword, login } =
+    useContext(dataContext);
   const navigate = useNavigate();
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-      .post("/api/login", { email, password })
-      .then((response) => {
-        const { user } = response.data;
-        if (!user) {
-          console.log("User not found.");
-          navigate("/");
-          return;
-        }
-        setUser(user);
-        navigate("/profile");
-      })
-      .catch((error) => {
-        navigate("/");
-        console.log(error.response.status);
-      });
+    const loginStatus = login(email, password);
+    loginStatus && navigate("/profile");
+    !loginStatus && navigate("/");
   };
 
   return (

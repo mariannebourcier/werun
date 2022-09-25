@@ -2,6 +2,7 @@
 import axios from "axios";
 import React, { useState, useEffect, createContext } from "react";
 
+
 export const dataContext = createContext();
 
 export default function DataProvider(props) {
@@ -9,6 +10,9 @@ export default function DataProvider(props) {
   const [runnerRuns, setRunnerRuns] = useState({});
   const [users, setUsers] = useState({});
   const [user, setUser] = useState({});
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  
 
   useEffect(() => {
     Promise.all([
@@ -37,12 +41,35 @@ export default function DataProvider(props) {
       });
   }, []);
 
+  const login = (email, password) =>{
+    return axios
+    .post("/api/login", { email, password })
+    .then((response) => {
+      const { user } = response.data;
+      if (!user) {
+        console.log("User not found.");
+        return false;
+      }
+      setUser(user);
+      return true;
+    })
+    .catch((error) => {
+      console.log(error.response.status);
+      return false;
+    });
+  }
+
   const data = {
     runs,
     runnerRuns,
     users,
     user,
     setUser,
+    login,
+    email,
+    setEmail,
+    password,
+    setPassword
   };
   return (
     <dataContext.Provider value={data}>{props.children}</dataContext.Provider>
