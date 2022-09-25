@@ -34,7 +34,7 @@ export default function useAppData() {
         setUsers(users)
 
         // const { user } = response[3].data;
-        console.log("single user:", user);
+        // console.log("single user:", user);
         // setUser(user)
       })
       .catch((error) => {

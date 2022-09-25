@@ -44,6 +44,11 @@ export default function Navigation(props) {
               </Nav.Link>
             )}
             {user.id && <Nav.Link href="/profile">Profile</Nav.Link>}
+            {user.id && (
+              <Nav.Link href="#" disabled>
+                Signed in as {user.email}
+              </Nav.Link>
+            )}
             <NavDropdown title="More Options" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#">Option 1</NavDropdown.Item>
               <NavDropdown.Item href="#">Option 1</NavDropdown.Item>
