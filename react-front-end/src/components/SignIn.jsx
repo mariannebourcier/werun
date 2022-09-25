@@ -1,22 +1,21 @@
 /* eslint-disable no-unused-vars */
-import React, { useContext } from "react";
+import React, { useState, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../components/SignInUser.css";
-import { dataContext } from "../providers/DataProvider";
-import { useNavigate } from "react-router-dom";
+import { authContext } from "../providers/AuthProvider";
 
 export default function SignIn() {
-  const { email, password, setEmail, setPassword, login } =
-    useContext(dataContext);
-  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { login, setPage } = useContext(authContext);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const loginStatus = login(email, password);
-    loginStatus && navigate("/profile");
-    !loginStatus && navigate("/");
+    login(email, password);
+    setPage("Profile");
   };
 
   return (
