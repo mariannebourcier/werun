@@ -3,9 +3,11 @@ import React, { useContext } from "react";
 
 import Run from "./Run";
 import { dataContext } from "../providers/DataProvider";
+import { authContext } from "../providers/AuthProvider";
 
 export default function Profile() {
-  const { user, runnerRuns } = useContext(dataContext);
+  const { runnerRuns } = useContext(dataContext);
+  const { user, auth } = useContext(authContext);
 
   const showRunnersRuns = (runs) => {
     const runsArray = Object.values(runs);
