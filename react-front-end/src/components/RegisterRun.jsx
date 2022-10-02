@@ -13,8 +13,13 @@ import { useRecoilValue } from "recoil";
 import { userState, runsState } from "../hooks/useAppData";
 import useAppData from "../hooks/useAppData";
 import "react-datepicker/dist/react-datepicker.css";
+import Autocomplete from "react-google-autocomplete";
+
 
 export default function RegisterRun() {
+  //api key
+  const myKey = process.env.REACT_APP_MAP_API_KEY;
+  //states
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
@@ -61,6 +66,17 @@ export default function RegisterRun() {
     );
   };
 
+  const autocomplete = () => {
+    return (
+      <Autocomplete
+        apiKey={myKey}
+        onPlaceSelected={(place) => {
+          console.log(place);
+        }}
+        />
+    )
+  };
+
   const create = async (e) => {
     e.preventDefault();
     const status = await createRun(user.id, name, description, location, distance, time, date, file);
@@ -97,6 +113,7 @@ export default function RegisterRun() {
           onChange={(e) => setDescription(e.target.value)}
         />
       </FloatingLabel>
+      
       <FloatingLabel controlId="location" label="Address" className="mb-3">
         <Form.Control
           type="text"
@@ -104,6 +121,7 @@ export default function RegisterRun() {
           value={location}
           onChange={(e) => setLocation(e.target.value)}
         />
+        <Autocomplete />
       </FloatingLabel>
 
       <Form.Group controlId="distance" className="mb-3">
