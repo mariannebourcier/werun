@@ -13,8 +13,8 @@ import { useRecoilValue } from "recoil";
 import { userState, runsState } from "../hooks/useAppData";
 import useAppData from "../hooks/useAppData";
 import "react-datepicker/dist/react-datepicker.css";
-import Autocomplete from "react-google-autocomplete";
-
+import AutoComplete from "./Autocomplete";
+//import PlacesAutocomplete from "./Autocomplete";
 
 export default function RegisterRun() {
   //api key
@@ -66,16 +66,16 @@ export default function RegisterRun() {
     );
   };
 
-  const autocomplete = () => {
-    return (
-      <Autocomplete
-        apiKey={myKey}
-        onPlaceSelected={(place) => {
-          console.log(place);
-        }}
-        />
-    )
-  };
+  // const autocomplete = () => {
+  //   return (
+  //     <Autocomplete
+  //       apiKey={myKey}
+  //       onPlaceSelected={(place) => {
+  //         console.log(place);
+  //       }}
+  //       />
+  //   )
+  // };
 
   const create = async (e) => {
     e.preventDefault();
@@ -121,8 +121,9 @@ export default function RegisterRun() {
           value={location}
           onChange={(e) => setLocation(e.target.value)}
         />
-        <Autocomplete />
       </FloatingLabel>
+
+      {/* <PlacesAutocomplete/> */}
 
       <Form.Group controlId="distance" className="mb-3">
         <Form.Label>Distance</Form.Label>
@@ -150,6 +151,7 @@ export default function RegisterRun() {
           onChange={(e) => setFile(e.target.files[0])}
         />
       </Form.Group>
+      
       <Button variant="primary" type="submit" onClick={(e) => create(e)}>
         Create
       </Button>

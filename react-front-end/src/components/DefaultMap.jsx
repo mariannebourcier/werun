@@ -38,6 +38,7 @@ const DefaultMap = ({ center, zoom }) => {
     defaultCenter={center}
     defaultZoom={zoom}
     yesIWantToUseGoogleMapApiInternals
+    //onChildClick={(key) => console.log(key)}
     >
     
     {showMarkers(marker)}
