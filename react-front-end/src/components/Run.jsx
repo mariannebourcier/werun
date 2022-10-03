@@ -15,7 +15,7 @@ export default function Run(props) {
         <img className="run-image" src={`/api/runs/image/${run.id}`}></img>
         <div className="run-body">
           <div className="run-heading">
-            <h3>{run.name}</h3>
+            <h3>{run.id}. {run.name}</h3>
             {run.future_run && (
               <span className="material-symbols-rounded">schedule</span>
             )}

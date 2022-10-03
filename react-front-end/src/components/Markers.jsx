@@ -22,7 +22,7 @@ import "./Marker.css";
 
 const Markers = ({ text, tooltip, $hover }) => {
   const handleClick = () => {
-    console.log(`You clicked on ${tooltip}`);
+    alert(`You clicked on ${tooltip}`);
   };
 
   return (
